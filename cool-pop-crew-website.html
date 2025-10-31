@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cool Pop Crew - Premium Ice Lollipops</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, #ff6b9d 0%, #c06c84 50%, #6c5b7b 100%);
+            color: white;
+            padding: 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+        
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 18px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8em;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+        
+        .logo-text {
+            font-size: 1.6em;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        
+        .logo-text span {
+            color: #ffd700;
+        }
+        
+        /* Cart Badge */
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 1.8em;
+            margin-left: 20px;
+            transition: transform 0.3s;
+        }
+        
+        .cart-icon:hover {
+            transform: scale(1.1);
+        }
+        
+        .cart-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ff3b3b;
+            color: white;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.5em;
+            font-weight: bold;
+        }
+        
+        /* Hamburger Menu */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+        
+        .menu-toggle span {
+            width: 28px;
+            height: 3px;
+            background: white;
+            border-radius: 3px;
+            transition: all 0.3s;
+        }
+        
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+        
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+        
+        nav {
+            display: flex;
+            gap: 25px;
+            align-items: center;
+        }
+        
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            font-size: 1.05em;
+            font-weight: 500;
+            transition: all 0.3s;
+            cursor: pointer;
+            padding: 8px 15px;
+            border-radius: 20px;
+        }
+        
+        .nav-link:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        /* Mobile Menu */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+            
+            nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: linear-gradient(135deg, #ff6b9d 0%, #c06c84 50%, #6c5b7b 100%);
+                flex-direction: column;
+                padding: 20px 30px;
+                gap: 10px;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease;
+            }
+            
+            nav.active {
+                max-height: 400px;
+                border-top: 1px solid rgba(255,255,255,0.2);
+            }
+        }
+        
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        /* Page Sections */
+        .page-section {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+        
+        .page-section.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: white;
+            border-radius: 25px;
+            padding: 60px 40px;
+            text-align: center;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+        
+        .hero h1 {
+            font-size: 3em;
+            background: linear-gradient(135deg, #ff6b9d 0%, #c06c84 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+        
+        .hero .tagline {
+            font-size: 1.4em;
+            color: #666;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+        
+        .hero p {
+            font-size: 1.15em;
+            color: #555;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff6b9d 0%, #c06c84 100%);
+            color: white;
+            padding: 18px 50px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0 5px 20px rgba(255, 107, 157, 0.3);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
+        }
+        
+        /* Section Titles */
+        .section-title {
+            font-size: 2.5em;
+            background: linear-gradient(135deg, #ff6b9d 0%, #6c5b7b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            font-weight: 800;
+            text-align: center;
+        }
+        
+        .section-subtitle {
+            font-size: 1.2em;
+            color: #666;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        /* Products Grid */
+        .products-container {
+            background: white;
+            border-radius: 25px;
+            padding: 50px 40px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .product-card {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border: 3px solid transparent;
+            position: relative;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(255, 107, 157, 0.3);
+            border: 3px solid #ff6b9d;
+        }
+        
+        .product-image {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #ff6b9d 0%, #c06c84 100%);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.3);
+        }
+        
+        .product-name {
+            font-size: 1.6em;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .product-price {
+            font-size: 2em;
+            color: #c06c84;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .add-to-cart-btn {
+            background: linear-gradient(135deg, #ff6b9d 0%, #c06c84 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 3px 10px rgba(255, 107, 157, 0.3);
+        }
+        
+        .add-to-cart-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.4);
+        }
+        
+        /* Cart Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            animation: fadeIn 0.3s;
+        }
+        
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 25px;
+            padding: 40px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        
+        .modal-title {
+            font-size: 2em;
+            color: #ff6b9d;
+            font-weight: 700;
+        }
+        
+        .close-modal {
+            font-size: 2em;
+            cursor: pointer;
+            color: #999;
+            transition: color 0.3s;
+        }
+        
+        .close-modal:hover {
+            color: #333;
+        }
+        
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .cart-item-info {
+            flex: 1;
+        }
+        
+        .cart-item-name {
+            font-weight: 600;
+            color: #333;
+            font-size: 1.1em;
+        }
+        
+        .cart-item-price {
+            color: #c06c84;
+            font-weight: 600;
+        }
+        
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .qty-btn {
+            background: #ff6b9d;
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2em;
+            transition: all 0.3s;
+        }
+        
+        .qty-btn:hover {
+            background: #c06c84;
+            transform: scale(1.1);
+        }
+        
+        .quantity {
+            font-weight: 600;
+            min-width: 30px;
+            text-align: center;
+        }
+        
+        .remove-btn {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 12px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-left: 10px;
+        }
+        
+        .cart-total {
+            border-top: 2px solid #dee2e6;
+            padding-top: 20px;
+            margin-top: 20px;
+            text-align: right;
+        }
+        
+        .total-label {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #333;
+        }
+        
+        .total-amount {
+            font-size: 2em;
+            font-weight: 800;
+            color: #c06c84;
+            margin-left: 15px;
+        }
+        
+        .empty-cart {
+            text-align: center;
+            padding: 40px 20px;
+            color: #999;
+        }
+        
+        /* Order Form */
+        .order-form {
+            margin-top: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .form-input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1em;
+            transition: border 0.3s;
+        }
+        
+        .form-input:focus {
+            outline: none;
+            border-color: #ff6b9d;
+        }
+        
+        .order-number {
+            background: #ffecd2;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .order-number-label {
+            font-size: 0.9em;
+            color: #666;
+        }
+        
+        .order-number-value {
+            font-size: 1.5em;
+            font-weight: 800;
+            color: #c06c84;
+            margin-top: 5px;
+        }
+        
+        /* Reviews Section */
+        .reviews-container {
+            background: white;
+            border-radius: 25px;
+            padding: 50px 40px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+        }
+        
+        .review-card {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .reviewer-name {
+            font-weight: 700;
+            color: #333;
+            font-size: 1.2em;
+        }
+        
+        .review-stars {
+            color: #ffd700;
+            font-size: 1.2em;
+        }
+        
+        .review-text {
+            color: #555;
+            line-height: 1.7;
+            font-size: 1.05em;
+        }
+        
+        /* About & Contact Pages */
+        .content-card {
+            background: white;
+            border-radius: 25px;
+            padding: 50px 40px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+        }
+        
+        .content-card h3 {
+            color: #ff6b9d;
+            font-size: 1.8em;
+            margin: 30px 0 15px;
+            font-weight: 700;
+        }
+        
+        .content-card p {
+            color: #555;
+            line-height: 1.8;
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+        
+        .contact-info {
+            background: #ffecd2;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            font-size: 1.1em;
+        }
+        
+        .contact-icon {
+            font-size: 1.5em;
+        }
+        
+        /* Edit Notes */
+        .edit-note {
+            background: linear-gradient(135deg, #fff9e6 0%, #ffe8cc 100%);
+            border-left: 4px solid #ffa726;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 30px 0;
+            font-size: 0.95em;
+            color: #6d4c41;
+            line-height: 1.6;
+        }
+        
+        .edit-note strong {
+            color: #e65100;
+            font-size: 1.05em;
+        }
+        
+        /* WhatsApp Float Button */
+        .whatsapp-float {
+            position: fixed;
+            width: 65px;
+            height: 65px;
+            bottom: 30px;
+            right: 30px;
+            background: #25d366;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 38px;
+            box-shadow: 0 5px 25px rgba(37, 211, 102, 0.4);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.5);
+        }
+        
+        .whatsapp-float::before {
+            content: "💬";
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 40px 25px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2em;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-content {
+                padding: 25px;
+            }
+            
+            .cart-item {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .quantity-controls {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo-container">
+                <div class="logo-icon">🍭</div>
+                <div class="logo-text">Cool Pop <span>Crew</span></div>
+            </div>
+            <div style="display: flex; align-items: center;">
+                <div class="menu-toggle" onclick="toggleMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <nav id="nav-menu">
+                    <a class="nav-link" onclick="showPage('home')">Home</a>
+                    <a class="nav-link" onclick="showPage('products')">Products</a>
+                    <a class="nav-link" onclick="showPage('reviews')">Reviews</a>
+                    <a class="nav-link" onclick="showPage('about')">About</a>
+                    <a class="nav-link" onclick="showPage('contact')">Contact</a>
+                </nav>
+                <div class="cart-icon" onclick="openCart()">
+                    🛒
+                    <span class="cart-badge" id="cart-count">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <!-- HOME PAGE -->
+        <div id="home" class="page-section active">
+            <div class="hero">
+                <h1>Welcome to Cool Pop Crew</h1>
+                <p class="tagline">Premium ice lollipops crafted with love by cousins</p>
+                <p>We're a passionate team bringing you the most refreshing and delicious ice lollipops. Perfect for hot summer days, parties, or just treating yourself to something special. Every pop is made with quality ingredients and a lot of heart.</p>
+                <p>Browse our selection, add to your cart, and place your order easily through WhatsApp!</p>
+                <button class="cta-button" onclick="showPage('products')">Explore Our Products</button>
+            </div>
+        </div>
+        
+        <!-- PRODUCTS PAGE -->
+        <div id="products" class="page-section">
+            <div class="products-container">
+                <h2 class="section-title">Our Ice Lollipops</h2>
+                <p class="section-subtitle">Add your favorites to cart and place your order!</p>
+                
+                <div class="edit-note">
+                    <strong>Customization Guide:</strong> Update your contact information below. Add your business hours, address, email, or social media links.
+                </div>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span class="contact-icon">📱</span>
+                        <div>
+                            <strong>WhatsApp:</strong> 067 146 5221<br>
+                            <small>Click the WhatsApp button to message us instantly!</small>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <span class="contact-icon">📍</span>
+                        <div>
+                            <strong>Location:</strong> Johannesburg, Gauteng<br>
+                            <small>We deliver throughout the area</small>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <span class="contact-icon">⏰</span>
+                        <div>
+                            <strong>Business Hours:</strong><br>
+                            <small>Monday - Saturday: 9:00 AM - 6:00 PM<br>
+                            Sunday: 10:00 AM - 4:00 PM</small>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <span class="contact-icon">📧</span>
+                        <div>
+                            <strong>Email:</strong> info@coolpopcrew.co.za<br>
+                            <small>For general inquiries and bulk orders</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3>Delivery Information</h3>
+                <p>We offer convenient delivery options throughout Johannesburg and surrounding areas. Same-day delivery available for orders placed before 2 PM. Minimum order for free delivery is R50.</p>
+                
+                <h3>Bulk Orders & Events</h3>
+                <p>Planning a party, event, or special occasion? We offer special pricing for bulk orders. Contact us on WhatsApp to discuss your needs and we'll create a custom package for you!</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- CART MODAL -->
+    <div id="cart-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Your Cart</h2>
+                <span class="close-modal" onclick="closeCart()">&times;</span>
+            </div>
+            
+            <div id="cart-items">
+                <div class="empty-cart">
+                    <p style="font-size: 3em; margin-bottom: 10px;">🛒</p>
+                    <p>Your cart is empty</p>
+                    <p style="font-size: 0.9em; color: #bbb;">Add some delicious ice lollipops!</p>
+                </div>
+            </div>
+            
+            <div id="cart-summary" style="display: none;">
+                <div class="cart-total">
+                    <span class="total-label">Total:</span>
+                    <span class="total-amount" id="cart-total">R0</span>
+                </div>
+                
+                <div class="order-form">
+                    <div class="order-number">
+                        <div class="order-number-label">Your Order Number</div>
+                        <div class="order-number-value" id="order-number">ORD-12345</div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Full Name *</label>
+                        <input type="text" id="customer-name" class="form-input" placeholder="Enter your full name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Phone Number *</label>
+                        <input type="tel" id="customer-phone" class="form-input" placeholder="e.g., 071 234 5678" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Delivery Address *</label>
+                        <input type="text" id="customer-address" class="form-input" placeholder="Enter your delivery address" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Special Instructions (Optional)</label>
+                        <input type="text" id="customer-notes" class="form-input" placeholder="Any special requests?">
+                    </div>
+                    
+                    <button class="cta-button" style="width: 100%; margin-top: 20px;" onclick="placeOrder()">
+                        Place Order via WhatsApp
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/27671465221?text=Hi%20Cool%20Pop%20Crew!%20I'd%20like%20to%20place%20an%20order" class="whatsapp-float" target="_blank"></a>
+    
+    <script>
+        // Cart management
+        let cart = [];
+        
+        // Generate order number
+        function generateOrderNumber() {
+            const date = new Date();
+            const dateStr = date.getFullYear().toString() + 
+                          (date.getMonth() + 1).toString().padStart(2, '0') + 
+                          date.getDate().toString().padStart(2, '0');
+            const randomNum = Math.floor(Math.random() * 9000) + 1000;
+            return `ORD-${dateStr}-${randomNum}`;
+        }
+        
+        // Update order number on page load
+        document.getElementById('order-number').textContent = generateOrderNumber();
+        
+        // Toggle mobile menu
+        function toggleMenu() {
+            const menu = document.getElementById('nav-menu');
+            const toggle = document.querySelector('.menu-toggle');
+            menu.classList.toggle('active');
+            toggle.classList.toggle('active');
+        }
+        
+        // Show page function
+        function showPage(pageId) {
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(section => section.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            
+            const menu = document.getElementById('nav-menu');
+            const toggle = document.querySelector('.menu-toggle');
+            menu.classList.remove('active');
+            toggle.classList.remove('active');
+            
+            window.scrollTo(0, 0);
+        }
+        
+        // Add to cart
+        function addToCart(name, price) {
+            const existingItem = cart.find(item => item.name === name);
+            
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({ name, price, quantity: 1 });
+            }
+            
+            updateCart();
+            
+            // Show brief notification
+            alert(`${name} added to cart!`);
+        }
+        
+        // Update cart display
+        function updateCart() {
+            const cartCount = document.getElementById('cart-count');
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            
+            const cartItemsDiv = document.getElementById('cart-items');
+            const cartSummary = document.getElementById('cart-summary');
+            
+            if (cart.length === 0) {
+                cartItemsDiv.innerHTML = `
+                    <div class="empty-cart">
+                        <p style="font-size: 3em; margin-bottom: 10px;">🛒</p>
+                        <p>Your cart is empty</p>
+                        <p style="font-size: 0.9em; color: #bbb;">Add some delicious ice lollipops!</p>
+                    </div>
+                `;
+                cartSummary.style.display = 'none';
+            } else {
+                let itemsHTML = '';
+                let total = 0;
+                
+                cart.forEach((item, index) => {
+                    const itemTotal = item.price * item.quantity;
+                    total += itemTotal;
+                    
+                    itemsHTML += `
+                        <div class="cart-item">
+                            <div class="cart-item-info">
+                                <div class="cart-item-name">${item.name}</div>
+                                <div class="cart-item-price">R${item.price} each</div>
+                            </div>
+                            <div class="quantity-controls">
+                                <button class="qty-btn" onclick="decreaseQuantity(${index})">-</button>
+                                <span class="quantity">${item.quantity}</span>
+                                <button class="qty-btn" onclick="increaseQuantity(${index})">+</button>
+                                <button class="remove-btn" onclick="removeFromCart(${index})">Remove</button>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                cartItemsDiv.innerHTML = itemsHTML;
+                document.getElementById('cart-total').textContent = `R${total}`;
+                cartSummary.style.display = 'block';
+            }
+        }
+        
+        // Increase quantity
+        function increaseQuantity(index) {
+            cart[index].quantity++;
+            updateCart();
+        }
+        
+        // Decrease quantity
+        function decreaseQuantity(index) {
+            if (cart[index].quantity > 1) {
+                cart[index].quantity--;
+            } else {
+                cart.splice(index, 1);
+            }
+            updateCart();
+        }
+        
+        // Remove from cart
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCart();
+        }
+        
+        // Open cart modal
+        function openCart() {
+            document.getElementById('cart-modal').classList.add('active');
+        }
+        
+        // Close cart modal
+        function closeCart() {
+            document.getElementById('cart-modal').classList.remove('active');
+        }
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('cart-modal');
+            if (event.target === modal) {
+                closeCart();
+            }
+        }
+        
+        // Place order via WhatsApp
+        function placeOrder() {
+            const name = document.getElementById('customer-name').value.trim();
+            const phone = document.getElementById('customer-phone').value.trim();
+            const address = document.getElementById('customer-address').value.trim();
+            const notes = document.getElementById('customer-notes').value.trim();
+            const orderNumber = document.getElementById('order-number').textContent;
+            
+            // Validation
+            if (!name || !phone || !address) {
+                alert('Please fill in all required fields (Name, Phone, Address)');
+                return;
+            }
+            
+            // Build order message
+            let message = `🍭 *NEW ORDER FROM COOL POP CREW WEBSITE*\n\n`;
+            message += `📋 *Order Number:* ${orderNumber}\n\n`;
+            message += `👤 *Customer Details:*\n`;
+            message += `Name: ${name}\n`;
+            message += `Phone: ${phone}\n`;
+            message += `Address: ${address}\n\n`;
+            message += `🛒 *Order Items:*\n`;
+            
+            let total = 0;
+            cart.forEach(item => {
+                const itemTotal = item.price * item.quantity;
+                total += itemTotal;
+                message += `• ${item.name} x${item.quantity} = R${itemTotal}\n`;
+            });
+            
+            message += `\n💰 *Total: R${total}*\n`;
+            
+            if (notes) {
+                message += `\n📝 *Special Instructions:*\n${notes}`;
+            }
+            
+            // Encode message for WhatsApp
+            const encodedMessage = encodeURIComponent(message);
+            const whatsappURL = `https://wa.me/27671465221?text=${encodedMessage}`;
+            
+            // Open WhatsApp
+            window.open(whatsappURL, '_blank');
+            
+            // Clear cart after order
+            setTimeout(() => {
+                cart = [];
+                updateCart();
+                closeCart();
+                alert(`Order ${orderNumber} sent! We'll confirm your order shortly via WhatsApp.`);
+            }, 1000);
+        }
+        
+        // Close mobile menu when clicking nav links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                const menu = document.getElementById('nav-menu');
+                const toggle = document.querySelector('.menu-toggle');
+                menu.classList.remove('active');
+                toggle.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html> Replace these example products with your actual lineup. Update the letter, name, and price for each product.
+                </div>
+                
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-image">S</div>
+                        <div class="product-name">Strawberry Blast</div>
+                        <div class="product-price">R5</div>
+                        <button class="add-to-cart-btn" onclick="addToCart('Strawberry Blast', 5)">Add to Cart</button>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-image">C</div>
+                        <div class="product-name">Chocolate Dream</div>
+                        <div class="product-price">R5</div>
+                        <button class="add-to-cart-btn" onclick="addToCart('Chocolate Dream', 5)">Add to Cart</button>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-image">L</div>
+                        <div class="product-name">Lemon Zest</div>
+                        <div class="product-price">R5</div>
+                        <button class="add-to-cart-btn" onclick="addToCart('Lemon Zest', 5)">Add to Cart</button>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-image">O</div>
+                        <div class="product-name">Orange Burst</div>
+                        <div class="product-price">R5</div>
+                        <button class="add-to-cart-btn" onclick="addToCart('Orange Burst', 5)">Add to Cart</button>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-image">G</div>
+                        <div class="product-name">Grape Fusion</div>
+                        <div class="product-price">R5</div>
+                        <button class="add-to-cart-btn" onclick="addToCart('Grape Fusion', 5)">Add to Cart</button>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-image">W</div>
+                        <div class="product-name">Watermelon Chill</div>
+                        <div class="product-price">R5</div>
+                        <button class="add-to-cart-btn" onclick="addToCart('Watermelon Chill', 5)">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- REVIEWS PAGE -->
+        <div id="reviews" class="page-section">
+            <div class="reviews-container">
+                <h2 class="section-title">Customer Reviews</h2>
+                <p class="section-subtitle">See what our happy customers are saying!</p>
+                
+                <div class="edit-note">
+                    <strong>Customization Guide:</strong> Replace these with your real customer reviews. Copy the review card format and update names and testimonials.
+                </div>
+                
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-name">Thabo M.</div>
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    </div>
+                    <div class="review-text">"Best ice lollipops in town! My kids absolutely love them. The strawberry flavor is amazing and the service is super fast. Highly recommend Cool Pop Crew!"</div>
+                </div>
+                
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-name">Nomsa K.</div>
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    </div>
+                    <div class="review-text">"Perfect for summer! I ordered a variety pack for my daughter's birthday party and everyone loved them. Great quality and affordable prices!"</div>
+                </div>
+                
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-name">Peter S.</div>
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    </div>
+                    <div class="review-text">"The chocolate and lemon flavors are my favorites! Easy ordering through WhatsApp and delivery was quick. Will definitely order again."</div>
+                </div>
+                
+                <div class="review-card">
+                    <div class="review-header">
+                        <div class="reviewer-name">Zanele D.</div>
+                        <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    </div>
+                    <div class="review-text">"Cool Pop Crew saved my family gathering! Everyone from kids to adults enjoyed these treats. Excellent service and delicious products!"</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ABOUT PAGE -->
+        <div id="about" class="page-section">
+            <div class="content-card">
+                <h2 class="section-title">About Cool Pop Crew</h2>
+                
+                <div class="edit-note">
+                    <strong>Customization Guide:</strong> Tell your unique story here! Share details about how you started, what makes your ice lollipops special, and your mission.
+                </div>
+                
+                <p>Cool Pop Crew is a family-run business started by a group of passionate cousins who wanted to bring joy and refreshment to our community. What began as a fun summer project has grown into a beloved local brand known for quality and flavor.</p>
+                
+                <h3>Our Story</h3>
+                <p>We started making ice lollipops in our family kitchen, experimenting with different flavors and recipes. Our goal was simple: create the most delicious, refreshing treats that bring smiles to people's faces. Today, we're proud to serve our community with premium ice lollipops made with care and quality ingredients.</p>
+                
+                <h3>Our Mission</h3>
+                <p>We believe everyone deserves a sweet moment of happiness. That's why we're committed to providing affordable, high-quality ice lollipops that taste amazing and cool you down on hot days. We source the best ingredients and put love into every pop we make.</p>
+                
+                <h3>Why Choose Us?</h3>
+                <p>✓ Made with premium ingredients<br>
+                ✓ Wide variety of flavors<br>
+                ✓ Affordable prices<br>
+                ✓ Fast, friendly service<br>
+                ✓ Easy ordering via WhatsApp<br>
+                ✓ Perfect for parties and events</p>
+            </div>
+        </div>
+        
+        <!-- CONTACT PAGE -->
+        <div id="contact" class="page-section">
+            <div class="content-card">
+                <h2 class="section-title">Contact Us</h2>
+                <p>Have questions or want to place a bulk order? Get in touch with us!</p>
+                
+                <div class="edit-note">
+                    <strong>Customization Guide:</strong>
